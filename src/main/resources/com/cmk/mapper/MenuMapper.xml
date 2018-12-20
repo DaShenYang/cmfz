@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cmk.mapper.MenuMapper">
+
+   <sql id="s1">
+        select m.id mid,m.title mtitle,m.iconcls miconcls,m.url murl,
+               n.id nid,n.title ntitle,n.iconcls niconcls,n.url nurl
+        from  menu m join menu n
+        on m.id=n.parentId
+    </sql>
+
+    <resultMap id="rm1" type="Menu">
+        <id column="mid" property="id"/>
+        <result column="mtitle" property="title"/>
+        <result column="miconcls" property="iconcls"/>
+        <result column="murl" property="url"/>
+        <collection property="list" ofType="Menu">
+            <id column="nid" property="id"/>
+            <result column="ntitle" property="title"/>
+            <result column="niconcls" property="iconcls"/>
+            <result column="nurl" property="url"/>
+        </collection>
+
+
+    </resultMap>
+
+    <select id="queryAllMenu" resultMap="rm1">
+        <include refid="s1"/>
+
+    </select>
+</mapper>
+ 

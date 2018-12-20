@@ -1,0 +1,24 @@
+server:
+  port: 8989
+  context-path: /cmfz
+  jsp-servlet:
+    init-parameters:
+      development: true
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://localhost:3306/cmfz
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+  mvc:
+    view:
+      prefix: /
+      suffix: .jsp
+  http:
+    encoding:
+      charset: utf-8
+      force: true
+mybatis:
+  type-aliases-package: com.cmk.entity
+  mapper-locations: classpath:com/cmk/mapper/*Mapper.xml
