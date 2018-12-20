@@ -10,15 +10,40 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/themes/icon.css">
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.easyui.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/easyui-lang-zh_CN.js"></script>
+
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/datagrid-detailview.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.edatagrid.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript">
+        $(function () {
 
+        });
+
+        function editPassword(id) {
+            $("#updateAdminDialog").dialog({
+                title: "修改密码页面",
+                width: 450,
+                height: 450,
+                closed: true,
+                href: "${pageContext.request.contextPath}/main/updateAdmin.jsp?id=" + id,
+                modal: true,
+                cache: false
+            });
+            $("#updateAdminDialog").dialog("open");
+        }
+
+    </script>
 </head>
 <body class="easyui-layout">   
     <div data-options="region:'north',split:true" style="height:60px;background-color:  #5C160C">
     	<div style="font-size: 24px;color: #FAF7F7;font-family: 楷体;font-weight: 900;width: 500px;float:left;padding-left: 20px;padding-top: 10px" >持名法州后台管理系统</div>
-    	<div style="font-size: 16px;color: #FAF7F7;font-family: 楷体;width: 300px;float:right;padding-top:15px">欢迎您:${sessionScope.admin.name} &nbsp;<a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-edit'">修改密码</a>&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/admin/exit" class="easyui-linkbutton"  data-options="iconCls:'icon-01'">退出系统</a></div>
+        <div style="font-size: 16px;color: #FAF7F7;font-family: 楷体;width: 300px;float:right;padding-top:15px">
+            欢迎您:${sessionScope.admin.name} &nbsp;<a href="#" id="editPass"
+                                                    onclick="editPassword('+${sessionScope.admin.id}+')"
+                                                    class="easyui-linkbutton"
+                                                    data-options="iconCls:'icon-edit'">修改密码</a>&nbsp;&nbsp;<a
+                href="${pageContext.request.contextPath}/admin/exit" class="easyui-linkbutton"
+                data-options="iconCls:'icon-01'">退出系统</a></div>
     </div>   
     <div data-options="region:'south',split:true" style="height: 40px;background: #5C160C">
     	<div style="text-align: center;font-size:15px; color: #FAF7F7;font-family: 楷体" >&copy;百知教育 2252618624@qq.com</div>
@@ -30,6 +55,7 @@
     </div>
     <div data-options="region:'center',href:'${pageContext.request.contextPath}/main/center.jsp'">
 
-    </div>   
+    </div>
+    <div id="updateAdminDialog"></div>
 </body> 
 </html>

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
 
@@ -20,8 +21,30 @@ public class BannerServiceImpl implements BannerService {
     @Override
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public BannerPageDto queryByPage(int curPage, int pageSize) {
+
+        //List<Banner> list = bannerMapper.selectAll();
+
+        Example example = new Example(Banner.class);
+        example.orderBy("id").desc();
+
         PageHelper.startPage(curPage, pageSize);
-        List<Banner> list = bannerMapper.selectAll();
+        List<Banner> list = bannerMapper.selectByExample(example);
+
         return new BannerPageDto(bannerMapper.selectCount(new Banner()), list);
+    }
+
+    @Override
+    public void delete(Integer id) {
+        bannerMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public void update(Banner banner) {
+        bannerMapper.updateByPrimaryKey(banner);
+    }
+
+    @Override
+    public void addBanner(Banner banner) {
+        bannerMapper.insert(banner);
     }
 }
