@@ -55,7 +55,7 @@
                 var row2 = $("#dg").edatagrid("getSelected");
 
                 if (row2 != null) {
-                    //删除指定行         保存后才能刷新页面
+                    //删除指定行      默认先刷新后删除 ----->  保存后才能刷新页面
                     var index2 = $("#dg").edatagrid("getRowIndex", row2);
                     $("#dg").edatagrid("destroyRow", index2);
 

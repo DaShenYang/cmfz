@@ -6,6 +6,10 @@
             required: true
         });
 
+        $("#addBannerFormFile").filebox({
+            required: true
+        });
+
 
         $("#addBannerFormStatus").combobox({
             required: true,
@@ -63,7 +67,7 @@
         <tr>
             <td align="right">图片:</td>
             <td align="left">
-                <input name="file1" class="easyui-filebox" id="addBannerFormFile"></td>
+                <input name="file1" id="addBannerFormFile"></td>
         </tr>
         <tr>
             <td align="right">状态:</td>
