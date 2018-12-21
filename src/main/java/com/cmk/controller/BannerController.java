@@ -1,6 +1,6 @@
 package com.cmk.controller;
 
-import com.cmk.dto.BannerPageDto;
+import com.cmk.dto.TemplatePageDto;
 import com.cmk.entity.Banner;
 import com.cmk.service.BannerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ public class BannerController {
     private BannerService bannerService;
 
     @RequestMapping("/queryAllBannerByPage")
-    public BannerPageDto queryAllBannerByPage(int page, int rows) {
+    public TemplatePageDto<Banner> queryAllBannerByPage(int page, int rows) {
         return bannerService.queryByPage(page, rows);
     }
 

@@ -1,6 +1,6 @@
 package com.cmk.service;
 
-import com.cmk.dto.BannerPageDto;
+import com.cmk.dto.TemplatePageDto;
 import com.cmk.entity.Banner;
 import com.cmk.mapper.BannerMapper;
 import com.github.pagehelper.PageHelper;
@@ -20,7 +20,7 @@ public class BannerServiceImpl implements BannerService {
 
     @Override
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-    public BannerPageDto queryByPage(int curPage, int pageSize) {
+    public TemplatePageDto<Banner> queryByPage(int curPage, int pageSize) {
 
         //List<Banner> list = bannerMapper.selectAll();
 
@@ -30,7 +30,7 @@ public class BannerServiceImpl implements BannerService {
         PageHelper.startPage(curPage, pageSize);
         List<Banner> list = bannerMapper.selectByExample(example);
 
-        return new BannerPageDto(bannerMapper.selectCount(new Banner()), list);
+        return new TemplatePageDto<Banner>(bannerMapper.selectCount(new Banner()), list);
     }
 
     @Override
