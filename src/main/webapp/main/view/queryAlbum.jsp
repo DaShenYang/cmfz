@@ -24,7 +24,7 @@
 
 
 </script>
-<form id="queryAlbumForm" method="post" align="center" style="margin-top:20px">
+<form id="queryAlbumForm" method="post" align="center" style="margin-top:15px">
 
     专辑名称: <input name="title" readonly> <br>
     章节数量: <input name="count" readonly> <br>
