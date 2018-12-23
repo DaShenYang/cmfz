@@ -23,7 +23,7 @@
             (
                 select * from album order by id desc limit ${(curPage-1)*pageSize},${pageSize}
             ) a
-                left join chapter c
+                left join (select * from chapter order by upload_date desc) c
                           on a.id = c.album_id
 
     </sql>

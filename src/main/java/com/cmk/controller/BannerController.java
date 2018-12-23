@@ -45,6 +45,7 @@ public class BannerController {
         ServletContext ctx = session.getServletContext();
         String realPath = ctx.getRealPath("/banner");
         String oldName = file1.getOriginalFilename();
+
         // 目标文件
         File descFile = new File(realPath + "/" + oldName);
         // 上传

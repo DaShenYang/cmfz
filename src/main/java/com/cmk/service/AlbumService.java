@@ -7,4 +7,8 @@ public interface AlbumService {
     public TemplatePageDto<Album> queryAlbumByPage(int curPage, int pageSize);
 
     Album queryOneAlbum(int id);
+
+    void addAlbum(Album album);
+
+    void updateAlbumById(Album album);
 }

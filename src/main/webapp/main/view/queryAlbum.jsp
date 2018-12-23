@@ -34,7 +34,7 @@
     星级评分: <span id="star" style="margin-right:58px "></span><br>
     传奇作者: <input name="author" readonly> <br>
     优秀播音: <input name="broadcast" readonly> <br>
-    精彩简介: <textarea name="brief" readonly style="margin-right:10px "></textarea><br><br>
+    精彩简介: <textarea name="brief" readonly style="margin-right:4px;width: 145px"></textarea><br><br>
     发布时间: <input name="pubDate" readonly>
 
 

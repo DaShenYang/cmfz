@@ -26,4 +26,6 @@ public class Chapter implements Serializable {
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date uploadDate;
 
+    private Integer albumId;
+
 }

@@ -18,7 +18,7 @@
 
                 if (row3 != null) {
                     if (row3.children != null) {
-                        $("#addAlbumDialog").dialog({
+                        $("#queryAlbumDialog").dialog({
                             title: "专辑详情页面",
                             width: 450,
                             height: 450,
@@ -27,7 +27,7 @@
                             modal: true,
                             cache: false
                         });
-                        $("#addAlbumDialog").dialog("open");
+                        $("#queryAlbumDialog").dialog("open");
                     } else {
                         $.messager.alert('提示', '请先选中专辑所在行！', 'info');
                     }
@@ -41,15 +41,16 @@
             text: "添加专辑",
             iconCls: 'icon-add',
             handler: function () {
-                //获取选中行
-                var row = $("#dg").edatagrid("getSelected");
-                if (row != null) {
-                    //编辑指定行
-                    var index = $("#dg").edatagrid("getRowIndex", row);
-                    $("#dg").edatagrid("editRow", index);
-                } else {
-                    alert("请先选中行")
-                }
+                $("#addAlbumDialog").dialog({
+                    title: "添加专辑页面",
+                    width: 450,
+                    height: 450,
+                    closed: true,
+                    href: "${pageContext.request.contextPath}/main/view/addAlbum.jsp",
+                    modal: true,
+                    cache: false
+                });
+                $("#addAlbumDialog").dialog("open");
 
 
             }
@@ -57,14 +58,39 @@
             text: "添加音频",
             iconCls: 'icon-arrow_up',
             handler: function () {
-                alert('帮助按钮')
+                //获取选中行
+                var row4 = $("#album").treegrid("getSelected");
+
+                if (row4 != null && row4.children != null) {
+                    $("#addChapterDialog").dialog({
+                        title: "添加音频页面",
+                        width: 450,
+                        height: 450,
+                        closed: true,
+                        href: "${pageContext.request.contextPath}/main/view/addChapter.jsp?id=" + row4.id,
+                        modal: true,
+                        cache: false
+                    });
+                    $("#addChapterDialog").dialog("open");
+
+                } else {
+                    $.messager.alert('提示', '请先选中专辑所在行！', 'info');
+                }
             }
         }, '-', {
             text: "音频下载",
             iconCls: 'icon-arrow_down',
             handler: function () {
-                $("#dg").edatagrid("saveRow")
+                //获取选中行
+                var row5 = $("#album").treegrid("getSelected");
+                if (row5 != null && row5.children == null) {
 
+                    location.href = "${pageContext.request.contextPath}/chapter/downloadChapter?url=" + row5.url;
+
+
+                } else {
+                    $.messager.alert('提示', '请先选中音频所在行！', 'info');
+                }
             }
         }];
 
@@ -92,4 +118,6 @@
     });
 </script>
 <table id="album"></table>
+<div id="queryAlbumDialog"></div>
 <div id="addAlbumDialog"></div>
+<div id="addChapterDialog"></div>

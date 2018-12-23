@@ -30,4 +30,14 @@ public class AlbumServiceImpl implements AlbumService {
     public Album queryOneAlbum(int id) {
         return albumMapper.selectByPrimaryKey(id);
     }
+
+    @Override
+    public void addAlbum(Album album) {
+        albumMapper.insert(album);
+    }
+
+    @Override
+    public void updateAlbumById(Album album) {
+        albumMapper.updateByPrimaryKey(album);
+    }
 }
