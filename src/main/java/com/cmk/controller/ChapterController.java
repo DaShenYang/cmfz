@@ -15,6 +15,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.*;
+import java.net.URLEncoder;
 import java.util.Date;
 import java.util.UUID;
 
@@ -70,11 +71,10 @@ public class ChapterController {
 
         String realPath = session.getServletContext().getRealPath("/");
         File file = new File(realPath + url);
-        //URLEncoder.encode(url,"UTF-8");
         String s[] = url.split("/");
         String fileName = s[1];
 
-        response.setHeader("Content-Disposition", "attachment;fileName=" + fileName);
+        response.setHeader("Content-Disposition", "attachment;fileName=" + URLEncoder.encode(fileName, "UTF-8"));
 
         byte[] buffer = new byte[1024];
         FileInputStream fis = null; //文件输入流
