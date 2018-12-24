@@ -95,6 +95,36 @@
                     $.messager.alert('提示', '请先选中音频所在行！', 'info');
                 }
             }
+        }, '-', {
+            text: "导出专辑",
+            iconCls: 'icon-redo',
+            handler: function () {
+                $.get("${pageContext.request.contextPath}/album/poiExport", function (res) {
+                    var r = eval("(" + res + ")");
+                    if (r == "ok") {
+
+                        $.messager.show({
+                            title: "提示",
+                            msg: "导出成功",
+                            timeout: 2000,
+                            showType: 'fade'
+
+                        });
+
+
+                    } else {
+                        $.messager.show({
+                            title: "提示",
+                            msg: "导出失败",
+                            timeout: 2000,
+                            showType: 'fade'
+
+                        });
+                    }
+                }, "text");
+
+
+            }
         }];
 
 

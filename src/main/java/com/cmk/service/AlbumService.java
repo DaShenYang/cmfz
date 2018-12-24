@@ -11,4 +11,7 @@ public interface AlbumService {
     void addAlbum(Album album);
 
     void updateAlbumById(Album album);
+
+    int selectCount();
+
 }

@@ -40,4 +40,10 @@ public class AlbumServiceImpl implements AlbumService {
     public void updateAlbumById(Album album) {
         albumMapper.updateByPrimaryKey(album);
     }
+
+    @Override
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public int selectCount() {
+        return albumMapper.selectCount(new Album());
+    }
 }
