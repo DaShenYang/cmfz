@@ -6,6 +6,7 @@
 <script type="text/javascript">
     $("#queryAlbumForm").form("load", "${pageContext.request.contextPath}/album/queryOneAlbum?id=" +${param.id});
 
+
     $(function () {
         $("#queryAlbumForm").form({
 

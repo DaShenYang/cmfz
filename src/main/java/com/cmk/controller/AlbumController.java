@@ -32,14 +32,18 @@ public class AlbumController {
 
 
     @RequestMapping("/addAlbum")
-    public void addAlbum(MultipartFile file2, Album album, HttpSession session) throws IOException {
+    public void addAlbum(MultipartFile file2, Album album, HttpSession session) {
         ServletContext ctx = session.getServletContext();
         String realPath = ctx.getRealPath("/cover");
         String oldName = file2.getOriginalFilename();
         // 目标文件
         File descFile = new File(realPath + "/" + oldName);
         // 上传
-        file2.transferTo(descFile);
+        try {
+            file2.transferTo(descFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         album.setCount(0);
         album.setCoverImg("cover/" + oldName);

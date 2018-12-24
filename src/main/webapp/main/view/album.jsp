@@ -18,6 +18,7 @@
 
                 if (row3 != null) {
                     if (row3.children != null) {
+                        $("#queryAlbumForm").form("load", row3);
                         $("#queryAlbumDialog").dialog({
                             title: "专辑详情页面",
                             width: 450,
@@ -27,7 +28,9 @@
                             modal: true,
                             cache: false
                         });
+
                         $("#queryAlbumDialog").dialog("open");
+
                     } else {
                         $.messager.alert('提示', '请先选中专辑所在行！', 'info');
                     }

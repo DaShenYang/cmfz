@@ -39,7 +39,7 @@ public class BannerController {
     }
 
     @RequestMapping("/addBanner")
-    public void addBanner(MultipartFile file1, Banner banner, HttpSession session) throws IOException {
+    public void addBanner(MultipartFile file1, Banner banner, HttpSession session) {
 
 
         ServletContext ctx = session.getServletContext();
@@ -49,7 +49,11 @@ public class BannerController {
         // 目标文件
         File descFile = new File(realPath + "/" + oldName);
         // 上传
-        file1.transferTo(descFile);
+        try {
+            file1.transferTo(descFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         banner.setImgPath("banner/" + oldName);
         banner.setPubDate(new Date());
