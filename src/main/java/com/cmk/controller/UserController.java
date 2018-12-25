@@ -1,6 +1,8 @@
 package com.cmk.controller;
 
+import com.cmk.dto.TemplatePageDto;
 import com.cmk.entity.Province;
+import com.cmk.entity.User;
 import com.cmk.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,5 +42,17 @@ public class UserController {
 
 
         return userService.distribution(sex);
+    }
+
+
+    @RequestMapping("/queryAllUserByPage")
+    public TemplatePageDto<User> queryAllUserByPage(int page, int rows) {
+        return userService.queryAllUserByPage(page, rows);
+    }
+
+
+    @RequestMapping("/update")
+    public void update(User user) {
+        userService.update(user);
     }
 }
