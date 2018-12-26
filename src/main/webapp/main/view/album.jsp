@@ -99,7 +99,8 @@
             text: "导出专辑",
             iconCls: 'icon-redo',
             handler: function () {
-                $.get("${pageContext.request.contextPath}/album/poiExport", function (res) {
+                /*$.get("", function (res)
+                {
                     var r = eval("(" + res + ")");
                     if (r == "ok") {
 
@@ -121,7 +122,8 @@
 
                         });
                     }
-                }, "text");
+                }, "text");*/
+                location.href = "${pageContext.request.contextPath}/album/poiExport";
 
 
             }

@@ -57,4 +57,10 @@ public class UserServiceImpl implements UserService {
     public void update(User user) {
         userMapper.updateByPrimaryKey(user);
     }
+
+    @Override
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public List<User> queryAllUser() {
+        return userMapper.selectAll();
+    }
 }

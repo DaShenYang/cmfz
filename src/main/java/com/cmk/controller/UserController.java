@@ -1,13 +1,24 @@
 package com.cmk.controller;
 
+import cn.afterturn.easypoi.excel.ExcelExportUtil;
+import cn.afterturn.easypoi.excel.ExcelImportUtil;
+import cn.afterturn.easypoi.excel.entity.ExportParams;
+import cn.afterturn.easypoi.excel.entity.ImportParams;
 import com.cmk.dto.TemplatePageDto;
 import com.cmk.entity.Province;
 import com.cmk.entity.User;
 import com.cmk.service.UserService;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -54,5 +65,52 @@ public class UserController {
     @RequestMapping("/update")
     public void update(User user) {
         userService.update(user);
+    }
+
+
+    @RequestMapping("/poiExport")
+    public String poiExport(HttpSession session, HttpServletResponse response) {
+        List<User> list = userService.queryAllUser();
+
+        ServletContext ctx = session.getServletContext();
+        String realPath = ctx.getRealPath("/");
+
+        for (User user : list) {
+            user.setHeadPic(realPath + user.getHeadPic());
+        }
+
+
+        Workbook workbook = ExcelExportUtil.exportExcel(new ExportParams("用户信息", "1226制作"),
+                User.class, list);
+
+        try {
+            //workbook.write(new FileOutputStream(new File("E:/user.xls")));
+
+
+            String encode = URLEncoder.encode("user.xls", "UTF-8");
+            response.setHeader("Content-Disposition", "attachment;fileName=" + encode);
+            response.setContentType("application/vnd.ms-excel");
+            workbook.write(response.getOutputStream());
+
+            return "ok";
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "";
+        }
+
+    }
+
+
+    @RequestMapping("/poiImport")
+    public void poiImport() {
+        ImportParams importParams = new ImportParams();
+        importParams.setTitleRows(1);
+        importParams.setHeadRows(1);
+        List<User> list = ExcelImportUtil.importExcel(new File("E:/user.xls"), User.class, importParams);
+
+
+        for (User user : list) {
+            System.out.println(user);
+        }
     }
 }

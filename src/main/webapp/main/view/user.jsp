@@ -44,6 +44,56 @@
                 $("#dg2").edatagrid("saveRow");
                 $("#dg2").edatagrid("reload");
             }
+        }, /*'-', {
+            text: "导入",
+            iconCls: 'icon-cart_put',
+            handler: function () {
+                $.get("", function (res) {
+
+
+                        $.messager.show({
+                            title: "提示",
+                            msg: "导入成功",
+                            timeout: 2000,
+                            showType: 'fade'
+
+                        });
+
+
+
+                });
+            }
+        },*/ '-', {
+            text: "导出",
+            iconCls: 'icon-cart_remove',
+            handler: function () {
+                /*$.get("", function (res) {
+                    var r = eval("(" + res + ")");
+                    if (r == "ok") {
+
+                        $.messager.show({
+                            title: "提示",
+                            msg: "导出成功",
+                            timeout: 2000,
+                            showType: 'fade'
+
+                        });
+
+
+                    } else {
+                        $.messager.show({
+                            title: "提示",
+                            msg: "导出失败",
+                            timeout: 2000,
+                            showType: 'fade'
+
+                        });
+                    }
+                }, "text");*/
+
+                location.href = "${pageContext.request.contextPath}/user/poiExport";
+
+            }
         }];
 
         $('#dg2').edatagrid({

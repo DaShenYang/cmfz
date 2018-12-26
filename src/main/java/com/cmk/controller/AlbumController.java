@@ -12,10 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.Date;
 import java.util.List;
 
@@ -62,7 +63,7 @@ public class AlbumController {
 
     @RequestMapping("/poiExport")
 
-    public String poiExport(HttpSession session) {
+    public String poiExport(HttpSession session, HttpServletResponse response) {
         int count = albumService.selectCount();
         TemplatePageDto<Album> albumTemplatePageDto = albumService.queryAlbumByPage(1, count);
         List<Album> albums = albumTemplatePageDto.getRows();
@@ -79,7 +80,12 @@ public class AlbumController {
                 Album.class, albums);
 
         try {
-            workbook.write(new FileOutputStream(new File("E:/easypoi.xls")));
+            //workbook.write(new FileOutputStream(new File("E:/easypoi.xls")));
+
+            String encode = URLEncoder.encode("easypoi.xls", "UTF-8");
+            response.setHeader("Content-Disposition", "attachment;fileName=" + encode);
+            response.setContentType("application/vnd.ms-excel");
+            workbook.write(response.getOutputStream());
 
             return "ok";
         } catch (IOException e) {

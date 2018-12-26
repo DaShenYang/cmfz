@@ -14,4 +14,8 @@ public interface UserService {
     TemplatePageDto<User> queryAllUserByPage(int curPage, int pageSize);
 
     void update(User user);
+
+
+    List<User> queryAllUser();
+
 }
