@@ -20,6 +20,7 @@
         select province,count(*) * 1000 c
         from user
         where sex = #{0}
+          and status = 1
         group by province
     </select>
 </mapper>
