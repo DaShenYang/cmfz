@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
-<script type="text/javascript" src="http://cdn-hangzhou.goeasy.io/goeasy.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/echarts.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/china.js"></script>
 

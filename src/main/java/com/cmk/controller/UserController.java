@@ -4,10 +4,12 @@ import cn.afterturn.easypoi.excel.ExcelExportUtil;
 import cn.afterturn.easypoi.excel.ExcelImportUtil;
 import cn.afterturn.easypoi.excel.entity.ExportParams;
 import cn.afterturn.easypoi.excel.entity.ImportParams;
+import com.alibaba.fastjson.JSONObject;
 import com.cmk.dto.TemplatePageDto;
 import com.cmk.entity.Province;
 import com.cmk.entity.User;
 import com.cmk.service.UserService;
+import io.goeasy.GoEasy;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -66,7 +68,12 @@ public class UserController {
 
         userService.update(user);
 
+        GoEasy goEasy = new GoEasy("http://rest-hangzhou.goeasy.io", "BC-6181be6f6c304014bef36247abb9ef87");
+        List<Province> provinceList = userService.distribution(0);
+        goEasy.publish("1228", JSONObject.toJSONString(provinceList));
 
+        List<Province> provinceList2 = userService.distribution(1);
+        goEasy.publish("1828", JSONObject.toJSONString(provinceList2));
     }
 
 
