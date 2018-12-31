@@ -3,6 +3,7 @@ package com.cmk;
 
 import com.alibaba.fastjson.JSONObject;
 import com.cmk.entity.Province;
+import com.cmk.service.InterFacService;
 import com.cmk.service.UserService;
 import io.goeasy.GoEasy;
 import org.junit.Test;
@@ -51,6 +52,14 @@ public class CmfzApplicationTests {
 
         List<Province> provinceList2 = userService.distribution(1);
         goEasy.publish("1828", JSONObject.toJSONString(provinceList2));
+    }
+
+    @Autowired
+    private InterFacService interFacService;
+
+    @Test
+    public void testSend() throws Exception {
+        System.out.println(interFacService.gainCode("15036270927"));
     }
 
 
