@@ -118,11 +118,7 @@
             <artifactId>easypoi-annotation</artifactId>
             <version>3.2.0</version>
         </dependency>
-        <dependency>
-            <groupId>cn.afterturn</groupId>
-            <artifactId>easypoi-annotation</artifactId>
-            <version>3.2.0</version>
-        </dependency>
+
 
 
         <!--GoEasy-->
@@ -133,7 +129,7 @@
             <version>0.3.8</version>
         </dependency>
 
-
+        <!--短信验证码-->
         <dependency>
             <groupId>com.aliyun</groupId>
             <artifactId>aliyun-java-sdk-core</artifactId>
