@@ -59,7 +59,7 @@ public class CmfzApplicationTests {
 
     @Test
     public void testSend() throws Exception {
-        System.out.println(interFacService.gainCode("15036270927"));
+        System.out.println(interFacService.queryCode("15036270927"));
     }
 
 
